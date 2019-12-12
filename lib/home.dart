@@ -11,20 +11,43 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentTab = 0;
 
-  final List<Widget> screens = [
-    HomeTab(),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.purple,
-    ),
-    Container(
-      color: Colors.pinkAccent,
-    ),
-  ];
-
   final PageStorageBucket bucket = PageStorageBucket();
+
+  List<BottomNavigationBarItem> _buildTabItems() {
+    return [
+      BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
+            color: currentTab == 0 ? Colors.black : Color(0xFF92a199),
+          ),
+          title: Text(
+            "Início",
+            style: TextStyle(
+                color: currentTab == 0 ? Colors.black : Color(0xFF92a199)),
+          )),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.credit_card,
+              color: currentTab == 1 ? Colors.black : Color(0xFF92a199)),
+          title: Text("Carteira",
+              style: TextStyle(
+                  color: currentTab == 1 ? Colors.black : Color(0xFF92a199)))),
+      BottomNavigationBarItem(icon: Container(), title: Container()),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.notifications_none,
+              color: currentTab == 2 ? Colors.black : Color(0xFF92a199)),
+          title: Text("Notificações",
+              style: TextStyle(
+                  color: currentTab == 2 ? Colors.black : Color(0xFF92a199)))),
+      BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            'assets/images/settings.svg',
+            width: 22.5,
+          ),
+          title: Text("Ajustes",
+              style: TextStyle(
+                  color: currentTab == 3 ? Colors.black : Color(0xFF92a199)))),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,23 +105,12 @@ class _HomeState extends State<Home> {
                   selectedFontSize: 12.5,
                   unselectedFontSize: 12,
                   currentIndex: currentTab,
-                  items: [
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home, color: currentTab == 0 ? Colors.black : Color(0xFF92a199),), title: Text("Início", style: TextStyle(color: currentTab == 0 ? Colors.black : Color(0xFF92a199)),)),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.credit_card, color: currentTab == 1 ? Colors.black : Color(0xFF92a199)), title: Text("Carteira", style: TextStyle(color: currentTab == 1 ? Colors.black : Color(0xFF92a199)))),
-                    BottomNavigationBarItem(
-                        icon: Container(), title: Container()),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.notifications_none, color: currentTab == 2 ? Colors.black : Color(0xFF92a199)), title: Text("Notificações", style: TextStyle(color: currentTab == 2 ? Colors.black : Color(0xFF92a199)))),
-                    BottomNavigationBarItem(
-                        icon: SvgPicture.asset('assets/images/settings.svg', width: 22.5,), title: Text("Ajustes", style: TextStyle(color: currentTab == 3 ? Colors.black : Color(0xFF92a199)))),
-                  ],
+                  items: _buildTabItems(),
                   onTap: null,
                 ),
               ),
               Positioned(
-                right: MediaQuery.of(context).size.width / 2.4,
+                right: MediaQuery.of(context).size.width / 2.33,
                 top: 0.0,
                 child: Container(
                   decoration: BoxDecoration(
@@ -107,12 +119,11 @@ class _HomeState extends State<Home> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         // Add one stop for each color. Stops should increase from 0 to 1
-                        
+
                         colors: [
                           // Colors are easy thanks to Flutter's Colors class.
                           Color(0xFFa1edb0),
                           Color(0xFF23D067),
-                          
                         ],
                       ),
                       borderRadius: BorderRadius.circular(40.0)),
@@ -141,4 +152,3 @@ class _HomeState extends State<Home> {
         ));
   }
 }
-

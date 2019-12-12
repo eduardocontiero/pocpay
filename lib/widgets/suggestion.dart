@@ -14,8 +14,8 @@ class Suggestion extends StatelessWidget {
                     child: Image.asset('assets/images/cielo_image.png'),
                     foregroundColor: Colors.white,
                   ),
-                  width: 75.0,
-                  height: 75.0,
+                  width: 70.0,
+                  height: 70.0,
                   padding: const EdgeInsets.all(2.0), // borde width
                   decoration: new BoxDecoration(
                     color: const Color(0xFFFFFFFF), // border color

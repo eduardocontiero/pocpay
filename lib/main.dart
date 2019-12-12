@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocpay/home.dart';
+import 'package:pocpay/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primaryColor: Color(0xFF23D067),
       ),
-      home: Home()
+      home: Splash(),
+       routes: {
+          '/splash': (context) => Splash(),
+          '/home': (context) => Home(),
+        },
     );
   }
 }
